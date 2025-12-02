@@ -1,0 +1,12 @@
+const express = require("express");
+const router = express.Router();
+const nhanvien = require("../controllers/employee.controller");
+
+router.post("/", nhanvien.create);
+router.get("/", nhanvien.findAll);
+router.get("/:id", nhanvien.findOne);
+router.put("/:id", nhanvien.update);
+router.delete("/:id", nhanvien.delete);
+router.delete("/", nhanvien.deleteAll);
+
+module.exports = router;

@@ -1,15 +1,32 @@
-const expess = require("express");
+const express = require("express");
 const cors = require("cors");
-const bookRoutes = require("./routes/book.route");
+const nhaXuatBanRoute = require("./app/routes/publisher.route");
+const nhanvienRoute = require("./app/routes/employee.route");
+const sachRoute = require("./app/routes/book.route");
+const docgiaRoute = require("./app/routes/reader.route");
+const muonsachRoute = require("./app/routes/trackingbookloans.route");
+const login = require("./app/routes/auth.route");
 const ApiError = require("./app/api-error");
-const app = expess();
+
+const app = express();
 
 app.use(cors());
-app.use(expess.json());
 
-app.use("/api/books", bookRoutes);
+app.use(express.json());
+
+app.use("/api/nhaxuatban", nhaXuatBanRoute);
+app.use("/api/nhanvien", nhanvienRoute);
+app.use("/api/sach", sachRoute);
+app.use("/api/docgia", docgiaRoute);
+app.use("/api/muonsach", muonsachRoute);
+app.use("/api/login", login);
+
+app.get("/", (req, res) => {
+  res.json({ message: "Welcome to library application." });
+});
+
 app.use((req, res, next) => {
-  return next(new ApiError(404, "Resource not found"));
+  next(new ApiError(404, "Resource not found"));
 });
 
 app.use((err, req, res, next) => {
@@ -18,7 +35,4 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.get("/", (req, res) => {
-  res.json({ message: "Hello from the backend!" });
-});
 module.exports = app;
