@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const docgia = require("../controllers/reader.controller");
+const docgia = require("../controllers/docgia.controller");
 
 router.post("/", docgia.create);
 router.get("/", docgia.findAll);

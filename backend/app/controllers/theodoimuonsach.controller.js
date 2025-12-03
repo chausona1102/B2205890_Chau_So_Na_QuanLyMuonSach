@@ -1,5 +1,5 @@
-const MongoDB = require("../utils/mongodb.utils");
-const MuonSachService = require("../services/trackingbookloans.service");
+const MongoDB = require("../utils/mongodb.util");
+const MuonSachService = require("../services/theodoimuonsach.service");
 const ApiError = require("../api-error");
 
 exports.create = async (req, res, next) => {

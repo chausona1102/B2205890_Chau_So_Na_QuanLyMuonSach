@@ -1,10 +1,10 @@
 const express = require("express");
 const cors = require("cors");
-const nhaXuatBanRoute = require("./app/routes/publisher.route");
-const nhanvienRoute = require("./app/routes/employee.route");
-const sachRoute = require("./app/routes/book.route");
-const docgiaRoute = require("./app/routes/reader.route");
-const muonsachRoute = require("./app/routes/trackingbookloans.route");
+const nhaXuatBanRoute = require("./app/routes/nhaxuatban.route");
+const nhanvienRoute = require("./app/routes/nhanvien.route");
+const sachRoute = require("./app/routes/sach.route");
+const docgiaRoute = require("./app/routes/docgia.route");
+const muonsachRoute = require("./app/routes/theodoimuonsach.route");
 const login = require("./app/routes/auth.route");
 const ApiError = require("./app/api-error");
 

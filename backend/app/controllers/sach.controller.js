@@ -1,5 +1,5 @@
-const SachService = require("../services/book.service");
-const MongoDB = require("../utils/mongodb.utils");
+const SachService = require("../services/sach.service");
+const MongoDB = require("../utils/mongodb.util");
 const ApiError = require("../api-error");
 
 exports.create = async (req, res, next) => {

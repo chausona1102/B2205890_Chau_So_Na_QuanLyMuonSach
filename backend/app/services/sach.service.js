@@ -16,6 +16,7 @@ class SachService {
       NamXuatBan: payload.NamXuatBan,
       MaNXB: payload.MaNXB,
       NguonGoc: payload.NguonGoc,
+      image_url: payload.image_url,
     };
     Object.keys(sach).forEach(
       (key) => sach[key] === undefined && delete sach[key]

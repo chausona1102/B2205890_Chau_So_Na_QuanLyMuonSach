@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const nhaXuatBanController = require("../controllers/publisher.controller");
+const nhaXuatBanController = require("../controllers/nhaxuatban.controller");
 
 router.post("/", nhaXuatBanController.create);
 router.get("/", nhaXuatBanController.findAll);

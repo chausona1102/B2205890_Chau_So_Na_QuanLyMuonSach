@@ -1,5 +1,5 @@
-const NhaXuatBanService = require("../services/publisher.service");
-const MongoDB = require("../utils/mongodb.utils");
+const NhaXuatBanService = require("../services/nhaxuatban.service");
+const MongoDB = require("../utils/mongodb.util");
 const ApiError = require("../api-error");
 
 exports.create = async (req, res, next) => {

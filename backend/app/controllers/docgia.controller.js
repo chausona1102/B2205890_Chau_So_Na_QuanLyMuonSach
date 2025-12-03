@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs");
-const DocGiaService = require("../services/reader.service");
-const MongoDB = require("../utils/mongodb.utils");
+const DocGiaService = require("../services/docgia.service");
+const MongoDB = require("../utils/mongodb.util");
 const ApiError = require("../api-error");
 
 exports.create = async (req, res, next) => {

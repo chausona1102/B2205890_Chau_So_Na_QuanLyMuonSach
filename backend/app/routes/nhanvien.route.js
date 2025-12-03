@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const nhanvien = require("../controllers/employee.controller");
+const nhanvien = require("../controllers/nhanvien.controller");
 
 router.post("/", nhanvien.create);
 router.get("/", nhanvien.findAll);

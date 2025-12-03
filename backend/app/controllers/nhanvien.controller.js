@@ -1,5 +1,5 @@
-const NhanVienService = require("../services/employee.service");
-const MongoDB = require("../utils/mongodb.utils");
+const NhanVienService = require("../services/nhanvien.service");
+const MongoDB = require("../utils/mongodb.util");
 const ApiError = require("../api-error");
 
 exports.create = async (req, res, next) => {
@@ -80,3 +80,31 @@ exports.deleteAll = async (_req, res, next) => {
     return next(new ApiError(500, "Lỗi khi xoá tất cả nhân viên"));
   }
 };
+
+// exports.login = async (req, res, next) => {
+//   const { MSNV, Password } = req.body;
+
+//   if (!MSNV || !Password) {
+//     return res
+//       .status(400)
+//       .json({ message: "Thiếu mã số nhân viên hoặc mật khẩu." });
+//   }
+
+//   try {
+//     const nhanvienService = new NhanVienService(MongoDB.client);
+//     const nv = await nhanvienService.login(MSNV, Password);
+
+//     if (!nv) {
+//       return res
+//         .status(401)
+//         .json({ message: "Thông tin đăng nhập không đúng." });
+//     }
+
+//     // Xóa mật khẩu khi trả về
+//     delete nv.Password;
+
+//     return res.json(nv);
+//   } catch (error) {
+//     return next(new ApiError(500, "Đăng nhập thất bại"));
+//   }
+// };

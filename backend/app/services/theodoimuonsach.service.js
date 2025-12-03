@@ -2,7 +2,7 @@ const { ObjectId } = require("mongodb");
 
 class MuonSachService {
   constructor(client) {
-    this.client = client;
+    this.client = client; // lưu client
     this.collection = client.db().collection("muonsach");
   }
 
@@ -61,8 +61,9 @@ class MuonSachService {
       .find({ MaDocGia: maDocGia })
       .toArray();
 
-    const sachCollection = this.client.db().collection("sach");
+    const sachCollection = this.client.db().collection("sach"); // ✅ Sửa đúng
 
+    // Gắn thêm Tên Sách cho mỗi phiếu mượn
     for (const record of records) {
       const sach = await sachCollection.findOne({ MaSach: record.MaSach });
       record.TenSach = sach?.TenSach || "(Không tìm thấy tên sách)";

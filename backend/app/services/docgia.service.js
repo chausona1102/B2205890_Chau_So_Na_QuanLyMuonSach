@@ -20,6 +20,7 @@ class DocGiaService {
       Password: payload.Password, // sẽ mã hóa sau
     };
 
+    // Xóa các trường không có dữ liệu
     Object.keys(docgia).forEach(
       (key) => docgia[key] === undefined && delete docgia[key]
     );
@@ -27,9 +28,11 @@ class DocGiaService {
     return docgia;
   }
 
+  // ✅ Mã hóa mật khẩu khi tạo
   async create(payload) {
     const data = this.extractData(payload);
 
+    // ✅ Mã hóa mật khẩu
     if (data.Password) {
       const salt = await bcrypt.genSalt(10);
       data.Password = await bcrypt.hash(data.Password, salt);
@@ -77,6 +80,7 @@ class DocGiaService {
     return result.deletedCount;
   }
 
+  // ✅ Đăng nhập độc giả
   async login(MaDocGia, Password) {
     const docgia = await this.DocGia.findOne({ MaDocGia });
     if (!docgia) return null;
