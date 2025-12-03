@@ -1,6 +1,8 @@
 <template>
     <div>
-
+        <div class="d-flex flex-column justify-content-center align-items-center mb-4" style="height: 10vh;">
+            <h1 class="heading-booklist">Xin chào {{ userName() }}</h1>
+        </div>
         <!-- Ô tìm kiếm -->
         <InputSearch v-model="searchText" @submit="timKiemSach" />
 
@@ -58,6 +60,7 @@ export default {
     async mounted() {
         await this.fetchBooks();
     },
+
     methods: {
         async fetchBooks() {
             try {
@@ -68,7 +71,11 @@ export default {
                 console.error("Lỗi khi tải sách:", err);
             }
         },
-
+        userName() {
+            const userData = JSON.parse(localStorage.getItem("user") || "{}");
+            if (!userData.user) return "Chưa đăng nhập";
+            return `${userData.user.HoLot}${userData.user.Ten}`;
+        },
         timKiemSach() {
             const tuKhoa = this.searchText.trim().toLowerCase();
             if (!tuKhoa) {

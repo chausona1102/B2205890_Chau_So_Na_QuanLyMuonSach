@@ -59,7 +59,7 @@
             <ErrorMessage name="DienThoai" class="text-danger" />
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-4" v-if="!docGiaLocal._id">
             <label>Mật khẩu</label>
             <Field name="Password" v-model="docGiaLocal.Password" v-slot="{ field }">
                 <input v-bind="field" type="password" class="form-control" />

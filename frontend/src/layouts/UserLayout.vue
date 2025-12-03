@@ -7,16 +7,19 @@
                     <i class="fa-solid fa-book-open-reader me-2"></i>Thư viện
                 </router-link>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
-                </button>
+                </button> -->
 
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <div class="navbar-nav align-items-center">
 
                         <router-link to="/user/books" class="nav-link nav-btn">Danh sách sách</router-link>
                         <router-link to="/user/history" class="nav-link nav-btn">Lịch sử mượn</router-link>
-
+                        <div class="user-profile d-flex align-items-center jutify-content-center">
+                            <i class="fa fa-user me-1" :title="userName"></i>
+                            <span class="user-name">{{ userName }}</span>
+                        </div>
                         <template v-if="isLoggedIn">
                             <button @click="logout" class="btn btn-light ms-3 px-3 rounded-pill shadow-sm">
                                 Đăng xuất
@@ -32,10 +35,19 @@
                 </div>
             </div>
         </nav>
-
-        <main class="container py-5">
-            <router-view />
-        </main>
+        <template v-if="isLoggedIn">
+            <main class="container py-5">
+                <router-view />
+            </main>
+        </template>
+        <template v-else>
+            <div class="d-flex flex-column justify-content-center align-items-center" style="height: 80vh;">
+                <h1 class="heading-layout">Xin chào các đọc giả!</h1>
+                <button @click="$router.push('/login')" class="btn-batman">
+                    <span>Đến thư viện</span>
+                </button>
+            </div>
+        </template>
     </div>
 </template>
 
@@ -48,6 +60,11 @@ export default {
         isLoggedIn() {
             return !!localStorage.getItem("user");
         },
+        userName() {
+            const userData = JSON.parse(localStorage.getItem("user") || "{}");
+            if (!userData.user) return "Chưa đăng nhập";
+            return `${userData.user.HoLot}${userData.user.Ten}`;
+        }
     },
     methods: {
         logout() {

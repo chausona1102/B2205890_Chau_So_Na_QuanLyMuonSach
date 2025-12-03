@@ -17,10 +17,9 @@ class DocGiaService {
       Phai: payload.Phai,
       DiaChi: payload.DiaChi,
       DienThoai: payload.DienThoai,
-      Password: payload.Password, // sẽ mã hóa sau
+      Password: payload.Password,
     };
 
-    // Xóa các trường không có dữ liệu
     Object.keys(docgia).forEach(
       (key) => docgia[key] === undefined && delete docgia[key]
     );
@@ -28,11 +27,9 @@ class DocGiaService {
     return docgia;
   }
 
-  // ✅ Mã hóa mật khẩu khi tạo
   async create(payload) {
     const data = this.extractData(payload);
 
-    // ✅ Mã hóa mật khẩu
     if (data.Password) {
       const salt = await bcrypt.genSalt(10);
       data.Password = await bcrypt.hash(data.Password, salt);
@@ -58,9 +55,8 @@ class DocGiaService {
   async update(madocgia, payload) {
     const update = this.extractData(payload);
 
-    if (update.Password) {
-      const salt = await bcrypt.genSalt(10);
-      update.Password = await bcrypt.hash(update.Password, salt);
+    if (!update.Password) {
+      delete update.Password;
     }
 
     const result = await this.DocGia.findOneAndUpdate(

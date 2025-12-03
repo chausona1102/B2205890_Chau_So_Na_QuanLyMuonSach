@@ -116,8 +116,9 @@ export default {
             }
         },
         editDocGia(dg) {
-            this.docgia = { ...dg, Password: "", old: dg.MaDocGia };
+            this.docgia = { ...dg, old: dg.MaDocGia };
         },
+
         async deleteDocGia(id) {
             if (confirm("Xóa độc giả này?")) {
                 try {
