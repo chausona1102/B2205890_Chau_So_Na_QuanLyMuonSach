@@ -1,0 +1,66 @@
+html, body {
+ font-size: 18px;
+}
+.admin-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 320px;
+    background: linear-gradient(180deg, #4e73df, #1cc7d0);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    padding: 20px 15px;
+}
+
+.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    font-size: 60px;
+    transition: 0.3s;
+}
+
+.avatar:hover {
+    background: rgba(255, 255, 255, 0.35);
+    transform: scale(1.05);
+}
+
+.admin-menu li {
+    margin-bottom: 10px;
+}
+
+.admin-menu li a {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 1.05rem;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+.admin-menu li a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    padding-left: 18px;
+}
+
+.logout-btn {
+    font-weight: 600;
+    border-radius: 25px;
+    transition: 0.3s;
+}
+
+.logout-btn:hover {
+    background: #c82333;
+    color: white;
+}
