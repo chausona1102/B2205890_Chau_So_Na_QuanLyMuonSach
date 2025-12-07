@@ -9,7 +9,7 @@
         </div>
 
         <div class="col-md-4">
-            <label>Họ lót</label>
+            <label>Họ và tên lót</label>
             <Field name="HoLot" v-model="docGiaLocal.HoLot" v-slot="{ field }">
                 <input v-bind="field" type="text" class="form-control" />
             </Field>

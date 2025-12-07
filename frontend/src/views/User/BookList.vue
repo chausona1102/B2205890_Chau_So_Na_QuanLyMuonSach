@@ -1,17 +1,19 @@
 <template>
     <div>
         <div class="d-flex flex-column justify-content-center align-items-center mb-4" style="height: 10vh;">
-            <h1 class="heading-booklist">Xin chào {{ userName() }}</h1>
+            <h1 class="heading-booklist text-light">Xin chào {{ userName() }}</h1>
         </div>
         <!-- Ô tìm kiếm -->
-        <InputSearch v-model="searchText" @submit="timKiemSach" />
 
         <!-- Danh sách sách -->
         <div class="row mt-3 g-4 mb-5">
-            <h4 class="title">
-                <i class="fa-solid fa-book-open me-2"></i>Danh sách sách
+            <h4 class="title text-light d-flex justify-content-between">
+                <span>
+                    <i class="fa-solid fa-book-open me-2 "></i>Danh sách sách
+                </span>
+                <InputSearch v-model="searchText" @submit="timKiemSach" />
             </h4>
-            <div v-for="book in books" :key="book.MaSach" class="col-md-3">
+            <div v-for="book in books" :key="book.MaSach" class="col-md-4">
                 <div class="card book-card shadow-sm">
 
                     <!-- Ảnh sách -->
@@ -20,13 +22,13 @@
 
 
                     <div class="card-body d-flex flex-column">
-                        <h5 class="card-title book-title">{{ book.TenSach }}</h5>
+                        <h5 class="card-title book-title text-center">{{ book.TenSach }}</h5>
 
-                        <p class="card-text text-muted small">
+                        <p class="card-text small">
                             Tác giả: <b>{{ book.NguonGoc }}</b><br>
                             Năm xuất bản: <b>{{ book.NamXuatBan }}</b><br>
                             Số lượng:
-                            <b :class="book.SoQuyen > 0 ? 'text-success' : 'text-danger'">
+                            <b :class="book.SoQuyen > 0 ? 'text-light' : 'text-danger'">
                                 {{ book.SoQuyen }}
                             </b>
                         </p>
@@ -74,7 +76,7 @@ export default {
         userName() {
             const userData = JSON.parse(localStorage.getItem("user") || "{}");
             if (!userData.user) return "Chưa đăng nhập";
-            return `${userData.user.HoLot}${userData.user.Ten}`;
+            return `${userData.user.HoLot} ${userData.user.Ten}`;
         },
         timKiemSach() {
             const tuKhoa = this.searchText.trim().toLowerCase();

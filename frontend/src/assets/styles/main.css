@@ -1,50 +1,100 @@
-.user-layout main {
-  padding-bottom: 40px !important;
+.user-layout .navbar {
+  /* background: linear-gradient(to bottom right, #6079e6, #9e16c0); */
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 70vw;
+  border-radius: 15px;
+  margin: auto;
 }
 
-.book-card {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  border-radius: 12px;
-  transition: 0.25s;
-  overflow: hidden;
+.user-layout .navbar .nav-link {
+  position: relative;
+  margin-right: 10px;
+  font-weight: 600;
+  color: #ccc;
+  transition: color 0.3s ease;
+}
+
+.user-layout .navbar .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+.user-layout .navbar .nav-link:hover, .user-profile:hover .fa-user{
+  color: #fff;
+  text-shadow: 0 10px 30px rgba(255, 255, 255, 1);
+}
+.user-layout .navbar .nav-link:hover::after {
+  transform: scaleX(1);
+}
+/* end css layout nav */
+
+
+/* Booklist css */
+.heading-booklist, .title.text-light {
+  /* color: #fff; */
+  text-shadow: 0 4px 5px rgba(0, 0, 0, 1);
+}
+
+.card.book-card {
+  padding: 20px 10px;
+  border-radius: 15px;
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.1);
+  min-height: 620px;
+}
+.book-img {
+  margin: auto;
+  width: auto;
+  height: 300px;
 }
 
 .book-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  background-color: rgba(253, 252, 252, 0.2);
+  transform: scale(1.05);
+  transition: transform 0.5s ease-in-out;
 }
 
-.book-img {
-  width: 100%;
-  height: 300px;
-  object-fit: contain;
-  background: #f7f7f7;
-  border-bottom: 1px solid #eee;
+.card-body .card-text {
+  color: rgba(255, 255, 255, 0.8);
 }
 
-.card-body {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.book-title {
-  font-weight: 600;
-  font-size: 1.1rem;
-}
-
-.card-text {
-  font-size: 0.95rem;
-}
-
-.card-body button {
+.card button {
   margin-top: auto;
 }
+
+
+/* userlayout-css */
 .user-layout {
   min-height: 100vh;
-  background: linear-gradient(to bottom right, #6079e6, #9e16c0);
+  /* background: linear-gradient(to bottom right, #6079e6, #9e16c0); */
+  /* background-position: center; */
+}
+
+.btn-logout  {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.2);
+  box-sizing: border-box;
+}
+.btn-logout:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+  color: #000;
+}
+
+.background {
+  position: fixed;
+  z-index: -1;
+  height: 100vh;
+  width: 100vw;
+  background-image: url('../background_user_layout.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .card {
   font-size: 1.2rem;
@@ -76,6 +126,7 @@
   cursor: pointer;
 }
 .user-profile i {
+  color: rgba(255, 255, 255, 0.8);
   margin-left: 10px;
 }
 .user-profile:hover {
@@ -192,4 +243,10 @@
   100% {
     transform: translateY(0);
   }
+}
+
+.footer-content {
+  display: absolute;
+  bottom: 0;
+  color: #fff;
 }

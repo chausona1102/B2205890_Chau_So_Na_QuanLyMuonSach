@@ -54,9 +54,12 @@ class NhanVienService {
   async update(msnv, payload) {
     const update = this.extractData(payload);
 
+    // if (update.Password) {
+    //   const salt = await bcrypt.genSalt(10);
+    //   update.Password = await bcrypt.hash(update.Password, salt);
+    // }
     if (update.Password) {
-      const salt = await bcrypt.genSalt(10);
-      update.Password = await bcrypt.hash(update.Password, salt);
+      delete update.Password;
     }
 
     const result = await this.NhanVien.findOneAndUpdate(

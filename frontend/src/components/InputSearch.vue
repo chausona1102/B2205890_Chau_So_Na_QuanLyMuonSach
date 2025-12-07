@@ -1,6 +1,6 @@
 <template>
     <div class="search-wrapper">
-        <div class="search-box">
+        <div class="search-box" style="min-width: 280px;">
             <input type="text" class="search-input" placeholder="Tìm sách theo tên hoặc tác giả..." :value="modelValue"
                 @input="$emit('update:modelValue', $event.target.value)" @keyup.enter="$emit('submit')" />
 

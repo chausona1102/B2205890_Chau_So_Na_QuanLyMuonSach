@@ -1,8 +1,10 @@
 <template>
-    <div class="history-container">
-        <h3 class="title">
-            <i class="fa-solid fa-clock-rotate-left me-2"></i>
-            Lịch sử mượn sách
+    <div class="history-container" style="min-height: 60vh;">
+        <h3 class="title text-light">
+            <span>
+                <i class="fa-solid fa-clock-rotate-left me-2"></i>
+                Lịch sử mượn sách
+            </span>
         </h3>
 
         <div class="card shadow-sm p-3 rounded">

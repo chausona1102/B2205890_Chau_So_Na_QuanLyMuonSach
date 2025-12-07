@@ -101,6 +101,8 @@ export default {
 
         async capNhatNhanVien(data) {
             try {
+                if (data.Password) delete data.Password;
+
                 await NhanVienService.update(this.nhanvien.oldMSNV, data);
                 this.$toast?.success?.("Cập nhật nhân viên thành công!") || alert("Đã cập nhật.");
                 // this.resetForm();
@@ -113,8 +115,9 @@ export default {
         },
 
         editNhanVien(nv) {
-            this.nhanvien = { ...nv, Password: "", oldMSNV: nv.MSNV, };
+            this.nhanvien = { ...nv, oldMSNV: nv.MSNV };
         },
+
 
         async deleteNhanVien(id) {
             if (confirm("Xóa nhân viên này?")) {
@@ -135,7 +138,7 @@ export default {
                 Chucvu: "",
                 Diachi: "",
                 SoDienThoai: "",
-                Password: "",
+                // Password: "",
             };
         },
     },

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h4><i class="fa-solid fa-user me-2"></i>Quản lý độc giả</h4>
+        <h4><i class="fa-solid fa-user me-2"></i>Quản lý đọc giả</h4>
 
         <!-- Ô tìm kiếm -->
         <InputSearch v-model="searchText" @submit="timKiemDocGia" />

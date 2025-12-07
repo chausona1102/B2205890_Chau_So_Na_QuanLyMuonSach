@@ -40,7 +40,7 @@
             <ErrorMessage name="SoDienThoai" class="text-danger" />
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-6" v-if="!nhanvienLocal._id">
             <label>Mật khẩu</label>
             <Field name="Password" v-model="nhanvienLocal.Password" v-slot="{ field }">
                 <input v-bind="field" type="password" class="form-control" />

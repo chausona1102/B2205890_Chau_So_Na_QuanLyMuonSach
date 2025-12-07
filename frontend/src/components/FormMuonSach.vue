@@ -64,7 +64,7 @@
         <div class="col-md-4">
             <label>Tiền phạt trễ hạn (VND)</label>
             <Field name="TienPhatTreHan" v-model="local.TienPhatTreHan" v-slot="{ field }">
-                <input v-bind="field" type="number" class="form-control" />
+                <input v-bind="field" type="number" class="form-control" disabled />
             </Field>
         </div>
 
@@ -121,6 +121,34 @@ export default {
                 this.local = { ...newVal };
             },
         },
+        // "local.NgayTraThuc"(newVal) {
+        //     const ngayTra = new Date(this.local.NgayTra);
+        //     const ngayTraThuc = new Date(newVal);
+
+        //     if (!this.local.NgayTra || !newVal) {
+        //         this.local.TienPhatTreHan = 0;
+        //         return;
+        //     }
+        //     const soNgayTre = Math.floor((ngayTraThuc - ngayTra) / 86400000);
+        //     this.local.TienPhatTreHan = soNgayTre > 0 ? soNgayTre * 5000 : 0;
+        // }
+        "local.NgayTraThuc"(newVal) {
+            const ngayMuon = new Date(this.local.NgayMuon);
+            const ngayTra = new Date(this.local.NgayTra);
+            const ngayTraThuc = new Date(newVal);
+            if (!this.local.NgayMuon || !this.local.NgayTra || !newVal) {
+                this.local.TienPhatTreHan = 0;
+                return;
+            }
+            if (ngayTraThuc < ngayMuon) {
+                alert("Ngày trả thực không được nhỏ hơn ngày mượn.");
+                this.local.NgayTraThuc = "";
+                this.local.TienPhatTreHan = 0;
+                return;
+            }
+            const soNgayTre = Math.floor((ngayTraThuc - ngayTra) / 86400000);
+            this.local.TienPhatTreHan = soNgayTre > 0 ? soNgayTre * 5000 : 0;
+        }
     },
     async mounted() {
         this.docGias = await DocGiaService.getAll();

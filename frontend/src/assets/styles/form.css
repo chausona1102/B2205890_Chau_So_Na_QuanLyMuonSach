@@ -37,13 +37,25 @@ label {
 
 
 .login-background, .register-background {
-    background: linear-gradient(to bottom right, #3087d8, #ACB6E5);
+    background-image: url("../background_user_layout.jpg");
 }
 
 .login-background .card, .register-background .card {
+    background: linear-gradient(to bottom right, #3087d8, #ACB6E5);
     border-radius: 10px;
     animation: toBot 0.5s forwards linear;
 }
+.login-background .card input.form-control:focus, .register-background .card input.form-control:focus {
+    background-color: transparent !important;
+    color: #fff;
+    box-shadow: none;
+    border-color: #ccc;
+}
+.login-background .card input.form-control, .register-background .card input.form-control{
+    background-color: transparent;
+}
+
+
 @keyframes toBot {
     0% {
         opacity: 0;

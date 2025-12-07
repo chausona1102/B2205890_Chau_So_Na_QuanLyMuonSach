@@ -2,7 +2,7 @@
     <div class="container register-background d-flex justify-content-center"
         style="max-width: 100vw; min-height: 100vh;">
         <div class="card p-4 shadow" style="width: 500px; margin-top: auto; margin-bottom: auto;">
-            <h3 class="mb-4 text-center">Đăng ký Tài khoản Độc giả</h3>
+            <h3 class="mb-4 text-center">Đăng ký tài khoản đọc giả</h3>
 
             <div v-if="error" class="alert alert-danger">{{ error }}</div>
 
