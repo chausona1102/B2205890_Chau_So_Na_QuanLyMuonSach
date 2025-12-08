@@ -23,12 +23,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="p in phieus" :key="p._id">
+                <tr v-for="p in phieus" :key="p._id" :class="{ 'table-danger': p.TienPhatTreHan > 0 }">
                     <td>{{ p.MaDocGia }}</td>
                     <td>{{ p.MaSach }}</td>
                     <td>{{ p.NgayMuon }}</td>
                     <td>{{ p.NgayTra }}</td>
-                    <td>{{ p.TrangThai }}</td>
+                    <td>{{ trangThai(p) }}</td>
                     <td>{{ p.TienPhatTreHan }}</td>
                     <td>
                         <button class="btn btn-sm btn-warning me-2" @click="editPhieu(p)"><i
@@ -128,6 +128,14 @@ export default {
         editPhieu(p) {
             this.phieu = { ...p, oldAct: p.TrangThai };
         },
+        trangThai(p) {
+            if (p.TienPhatTreHan > 0) {
+                return "Trễ hạn";
+            } else if (p.NgayTra) {
+                return "Đã duyệt";
+            }
+        }
+        ,
         async xoaPhieu(id) {
             if (confirm("Bạn có chắc muốn xóa phiếu mượn này?")) {
                 try {
