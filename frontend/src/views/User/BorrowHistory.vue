@@ -27,7 +27,7 @@
                         </td>
                     </tr>
 
-                    <tr v-for="record in history" :key="record._id">
+                    <tr v-for="record in history" :key="record._id" :class="{ 'table-danger': isOverdue(record) }">
                         <td>{{ record.TenSach || "(Không rõ tên sách)" }}</td>
                         <td>{{ formatDate(record.NgayMuon) }}</td>
                         <td>{{ formatDate(record.NgayTra) }}</td>
@@ -35,12 +35,15 @@
 
                         <td>
                             <span class="badge px-3 py-2" :class="{
-                                'bg-warning text-dark': record.TrangThai === 'Chờ duyệt',
-                                'bg-success': record.TrangThai === 'Đã mượn' || record.TrangThai === 'Đã duyệt',
-                                'bg-secondary': record.TrangThai === 'Đã trả',
-                                'bg-danger': record.TrangThai === 'Từ chối',
+                                // 'bg-warning text-dark': record.TrangThai === 'Chờ duyệt',
+                                // 'bg-success': record.TrangThai === 'Đã mượn' || record.TrangThai === 'Đã duyệt',
+                                // 'bg-secondary': record.TrangThai === 'Đã trả',
+                                // 'bg-danger': record.TrangThai === 'Từ chối',
+                                'bg-warning text-dark': tinhTrang(record) === 'Chờ duyệt',
+                                'bg-success': tinhTrang(record) === 'Đã duyệt' || tinhTrang(record) === 'Đã trả',
+                                'bg-danger': tinhTrang(record) === 'Từ chối',
                             }">
-                                {{ record.TrangThai }}
+                                {{ tinhTrang(record) }}
                             </span>
                         </td>
 
@@ -69,16 +72,29 @@ export default {
             if (!dateStr) return "";
             return new Date(dateStr).toLocaleDateString("vi-VN");
         },
+        tinhTrang(record) {
+            if (record.NgayTraThuc) return "Đã trả";
+            if (record.TrangThai === "Từ chối") return "Từ chối";
+            if (record.TrangThai === "Chờ duyệt") return "Chờ duyệt";
+            return "Đã duyệt";
+        },
+        isOverdue(record) {
+            if (!record.NgayTraThuc && record.NgayTra) {
+                const today = new Date();
+                const due = new Date(record.NgayTra);
+                return today > due;
+            }
+            return false;
+        },
         async fetchHistory() {
             const docGia = JSON.parse(localStorage.getItem("user"));
             if (!docGia || !docGia.user?.MaDocGia) {
                 alert("Bạn cần đăng nhập để xem lịch sử mượn sách.");
                 return;
             }
-
             try {
                 const data = await MuonSachService.findByMaDocGia(docGia.user.MaDocGia);
-                this.history = data;
+                this.history = data.reverse();
             } catch (err) {
                 console.error(err);
                 alert("Không thể tải lịch sử mượn sách.");

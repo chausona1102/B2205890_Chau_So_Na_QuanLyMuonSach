@@ -18,6 +18,7 @@
                     <th>Ngày mượn</th>
                     <th>Ngày trả</th>
                     <th>Trạng thái</th>
+                    <th>Tiền phạt</th>
                     <th>Thao tác</th>
                 </tr>
             </thead>
@@ -28,11 +29,14 @@
                     <td>{{ p.NgayMuon }}</td>
                     <td>{{ p.NgayTra }}</td>
                     <td>{{ p.TrangThai }}</td>
+                    <td>{{ p.TienPhatTreHan }}</td>
                     <td>
                         <button class="btn btn-sm btn-warning me-2" @click="editPhieu(p)"><i
                                 class="fa-solid fa-pencil"></i></button>
                         <button class="btn btn-sm btn-danger" @click="xoaPhieu(p._id)"><i
                                 class="fa-solid fa-trash"></i></button>
+                        <button v-if="p.TienPhatTreHan > 0" class="btn btn-sm btn-primary mx-2"
+                            @click="thanhToan(p._id)">Thanh toán</button>
                     </td>
                 </tr>
             </tbody>
@@ -58,6 +62,7 @@ export default {
                 MaSach: "",
                 NgayMuon: "",
                 NgayTra: "",
+                TienPhatTreHan: 0,
                 TrangThai: "Chờ duyệt",
                 _id: null,
                 oldAct: "",
@@ -89,6 +94,24 @@ export default {
                 alert("Lỗi khi thêm phiếu");
             }
         },
+        async thanhToan(id) {
+            if (!confirm("Xác nhận đã thanh toán?")) return;
+            try {
+                const phieu = this.allPhieus.find(p => p._id === id);
+                if (!phieu) {
+                    alert("Không tìm thấy phiếu.");
+                    return;
+                }
+                phieu.TienPhatTreHan = 0;
+                await MuonSachService.update(id, phieu);
+                alert("Đã thanh toán thành công!");
+                this.fetchPhieus();
+            } catch (err) {
+                console.error(err);
+                alert("Lỗi khi thanh toán");
+            }
+        },
+
         async capNhatPhieu(data) {
             try {
                 await MuonSachService.update(data._id, data);

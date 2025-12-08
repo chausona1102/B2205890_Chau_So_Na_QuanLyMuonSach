@@ -103,7 +103,10 @@ export default {
 
             try {
                 const danhSachPhieu = await MuonSachService.findByMaDocGia(maDocGia);
-
+                if (danhSachPhieu.some(p => p.TienPhatTreHan > 0)) {
+                    alert("Bạn có khoản tiền phạt trễ hạn chưa thanh toán. Vui lòng thanh toán trước khi mượn sách mới.");
+                    return;
+                }
                 const daMuon = danhSachPhieu.find(
                     (p) => p.MaSach === maSach && p.TrangThai !== "Đã trả"
                 );

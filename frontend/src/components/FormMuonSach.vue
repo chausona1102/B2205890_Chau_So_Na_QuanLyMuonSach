@@ -41,7 +41,6 @@
             </Field>
             <ErrorMessage name="NgayTra" class="text-danger" />
         </div>
-
         <div class="col-md-4">
             <label>Trạng thái</label>
             <Field name="TrangThai" v-model="local.TrangThai" v-slot="{ field }">
