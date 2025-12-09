@@ -75,7 +75,7 @@ export default {
         userName() {
             const userData = JSON.parse(localStorage.getItem("user") || "{}");
             if (!userData.user) return "Chưa đăng nhập";
-            return `${userData.user.HoLot}${userData.user.Ten}`;
+            return `${userData.user.HoLot} ${userData.user.Ten}`;
         }
     },
     methods: {
